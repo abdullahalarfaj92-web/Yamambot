@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>يمام بوت</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--n:#1B2E6B;--t:#00BFA5;--t2:#009E8A;--o:#FF8C00;--c:#F5F0E8;--c2:#EDE8DF;--w:#fff}
+html,body{height:100%;font-family:'IBM Plex Sans Arabic',Tahoma,sans-serif}
+body{background:var(--c);color:var(--n);display:flex;flex-direction:column;align-items:center;min-height:100vh}
+header{width:100%;background:var(--n);display:flex;align-items:center;justify-content:space-between;padding:12px 20px;position:sticky;top:0;z-index:10;box-shadow:0 4px 20px rgba(27,46,107,.3)}
+.hl{display:flex;align-items:center;gap:12px}
+.li{width:46px;height:46px;background:var(--c);border-radius:11px;display:grid;place-items:center;font-size:24px}
+.ht h1{font-size:18px;font-weight:700;color:#fff}
+.ht p{font-size:12px;color:var(--t);margin-top:1px}
+.badge{display:flex;align-items:center;gap:6px;background:rgba(0,191,165,.13);border:1px solid rgba(0,191,165,.35);color:var(--t);font-size:12px;padding:5px 13px;border-radius:20px}
+.dot{width:7px;height:7px;background:var(--t);border-radius:50%;box-shadow:0 0 6px var(--t);animation:pu 2s infinite;display:inline-block}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.3}}
+#chat{flex:1;width:100%;max-width:800px;padding:20px 14px;overflow-y:auto;display:flex;flex-direction:column;gap:18px;scroll-behavior:smooth}
+#chat::-webkit-scrollbar{width:4px}
+#chat::-webkit-scrollbar-thumb{background:var(--c2);border-radius:4px}
+.wlc{background:var(--w);border:2px solid var(--c2);border-radius:18px;padding:28px 20px;text-align:center;box-shadow:0 4px 20px rgba(27,46,107,.07)}
+.wlc .wi{font-size:44px;display:block;margin-bottom:10px}
+.wlc h2{font-size:19px;font-weight:700;margin-bottom:8px}
+.wlc p{color:#6B7A99;font-size:14px;line-height:1.85;text-align:right;white-space:pre-line}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.chip{background:var(--c);border:1px solid var(--c2);color:var(--n);font-size:13px;padding:7px 14px;border-radius:20px;cursor:pointer;font-family:inherit;transition:all .2s}
+.chip:hover{background:var(--n);color:#fff}
+.mw{display:flex;gap:10px;animation:up .3s ease}
+.mw.u{flex-direction:row-reverse}
+.av{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex-shrink:0;font-size:16px}
+.av.b{background:var(--n)}
+.av.u{background:var(--c2);border:1px solid #d8d0c4}
+.bub{max-width:74%;padding:12px 16px;font-size:14px;line-height:1.85;white-space:pre-wrap;text-align:right}
+.bub.b{background:var(--w);border:1px solid var(--c2);border-radius:4px 18px 18px 18px;box-shadow:0 2px 10px rgba(27,46,107,.06);color:var(--n)}
+.bub.u{background:var(--n);color:#fff;border-radius:18px 4px 18px 18px}
+.bub.e{background:#fff2f2;border:1px solid #ffc5c5;color:#c0392b;border-radius:12px;max-width:90%;padding:12px 16px}
+.typ{display:flex;gap:5px;align-items:center;padding:3px 0}
+.typ span{width:8px;height:8px;border-radius:50%;background:var(--t);animation:bo .85s infinite}
+.typ span:nth-child(2){animation-delay:.15s}
+.typ span:nth-child(3){animation-delay:.3s}
+@keyframes bo{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-6px);opacity:1}}
+footer{width:100%;background:var(--w);border-top:2px solid var(--c2);padding:12px 14px 16px;display:flex;flex-direction:column;align-items:center}
+.ir{width:100%;max-width:800px;display:flex;align-items:flex-end;gap:10px;background:var(--c);border:2px solid var(--c2);border-radius:16px;padding:10px 10px 10px 14px;transition:border-color .2s}
+.ir:focus-within{border-color:var(--t);box-shadow:0 0 0 3px rgba(0,191,165,.12)}
+#inp{flex:1;background:none;border:none;outline:none;color:var(--n);font-family:inherit;font-size:14px;line-height:1.55;resize:none;max-height:120px;direction:rtl}
+#inp::placeholder{color:#6B7A99}
+#btn{width:42px;height:42px;border-radius:11px;border:none;background:linear-gradient(135deg,var(--t),var(--t2));color:#fff;display:grid;place-items:center;cursor:pointer;flex-shrink:0;box-shadow:0 4px 14px rgba(0,191,165,.4);transition:transform .15s}
+#btn:hover{transform:scale(1.07)}
+#btn:disabled{opacity:.4;cursor:default;transform:none}
+#btn svg{width:19px;height:19px;fill:#fff}
+.hint{font-size:12px;color:#6B7A99;margin-top:8px}
+.hint b{color:var(--o)}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hl">
+    <div class="li">🕊️</div>
+    <div class="ht">
+      <h1>يمام بوت</h1>
+      <p>تسويق وتحليل السوق الذكي</p>
+    </div>
+  </div>
+  <div class="badge"><span class="dot"></span>متصل الآن</div>
+</header>
+<div id="chat">
+  <div class="wlc" id="wlc">
+    <span class="wi">🕊️</span>
+    <h2>مرحباً! أنا يمام بوت 👋</h2>
+    <p>أستطيع مساعدتك في:
+1️⃣ تحليل منيو المطاعم والكافيهات
+2️⃣ تحليل حساب الانستغرام
+3️⃣ إنشاء برومبت صور إعلانية
+4️⃣ خطة محتوى 30 يوم
+5️⃣ تحليل المنافسين في مدينتك</p>
+    <div class="chips">
+      <button class="chip" onclick="qs('أريد تحليل منيو مطعمي')">📋 تحليل منيو</button>
+      <button class="chip" onclick="qs('أريد تحليل حساب الانستغرام')">📱 تحليل انستغرام</button>
+      <button class="chip" onclick="qs('أريد تحليل المنافسين في مدينتي')">🏙️ تحليل المنافسين</button>
+      <button class="chip" onclick="qs('أريد خطة محتوى 30 يوم')">📅 خطة محتوى</button>
+      <button class="chip" onclick="qs('أريد برومبت لصورة إعلانية')">📸 برومبت إعلاني</button>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="ir">
+    <textarea id="inp" rows="1" placeholder="اكتب طلبك هنا..."></textarea>
+    <button id="btn" onclick="go()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+  <p class="hint">اضغط <b>Enter</b> للإرسال · <b>Shift+Enter</b> لسطر جديد</p>
+</footer>
+<script>
+const KEY = "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";
+const SYS = `أنت خبير تسويق رقمي متخصص في السوق السعودي. اسمك يمام بوت.
+مهمتك مساعدة المطاعم والكافيهات والمتاجر في تحسين التسويق وزيادة المبيعات.
+الخدمات:
+1. تحليل منيو - الأطباق الربحية، تحسين الوصف، كومبو مع أسعار، منتجات جديدة.
+2. تحليل انستغرام - البايو، المحتوى، التفاعل + اقتراحات.
+3. تحليل المنافسين - نقاط القوة والضعف والفرص.
+4. خطة محتوى 30 يوم متنوعة.
+5. برومبت صور إعلانية إنجليزي احترافي.
+الردود: عربي دائماً، واضح وعملي، مناسب للسوق السعودي، استخدم الإيموجي.`;
+
+const chat = document.getElementById('chat');
+const inp  = document.getElementById('inp');
+const btn  = document.getElementById('btn');
+let hist = [{role:"system", content: SYS}];
+
+inp.addEventListener('input',()=>{inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,120)+'px'});
+inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();go()}});
+function qs(t){inp.value=t;go()}
+
+async function go(){
+  const t=inp.value.trim();
+  if(!t||btn.disabled)return;
+  const w=document.getElementById('wlc');
+  if(w)w.remove();
+  addMsg('u',t);
+  hist.push({role:'user',content:t});
+  inp.value='';inp.style.height='auto';
+  btn.disabled=true;
+  const tid=addTyping();
+  try{
+    const r=await fetch('https://api.openai.com/v1/chat/completions',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':'Bearer '+KEY
+      },
+      body:JSON.stringify({
+        model:'gpt-4o-mini',
+        max_tokens:1000,
+        messages:hist
+      })
+    });
+    const d=await r.json();
+    if(!r.ok) throw new Error(d?.error?.message||'خطأ '+r.status);
+    const rep=d?.choices?.[0]?.message?.content;
+    if(!rep) throw new Error('لم يصل رد');
+    hist.push({role:'assistant',content:rep});
+    rmTyping(tid);
+    addMsg('b',rep);
+  }catch(e){
+    rmTyping(tid);
+    addErr('⚠️ '+e.message);
+  }finally{
+    btn.disabled=false;
+    inp.focus();
+  }
+}
+
+function addMsg(r,t){
+  const w=document.createElement('div');w.className='mw '+(r==='u'?'u':'');
+  const a=document.createElement('div');a.className='av '+(r==='u'?'u':'b');a.textContent=r==='u'?'👤':'🕊️';
+  const b=document.createElement('div');b.className='bub '+(r==='u'?'u':'b');b.textContent=t;
+  w.append(a,b);chat.appendChild(w);chat.scrollTop=chat.scrollHeight;
+}
+let tc=0;
+function addTyping(){
+  const id='ty'+(++tc);
+  const w=document.createElement('div');w.id=id;w.className='mw';
+  const a=document.createElement('div');a.className='av b';a.textContent='🕊️';
+  const b=document.createElement('div');b.className='bub b';
+  b.innerHTML='<div class="typ"><span></span><span></span><span></span></div>';
+  w.append(a,b);chat.appendChild(w);chat.scrollTop=chat.scrollHeight;
+  return id;
+}
+function rmTyping(id){document.getElementById(id)?.remove()}
+function addErr(m){
+  const d=document.createElement('div');d.className='mw';
+  const b=document.createElement('div');b.className='bub e';b.textContent=m;
+  d.appendChild(b);chat.appendChild(d);chat.scrollTop=chat.scrollHeight;
+}
+</script>
+</body>
+</html>
